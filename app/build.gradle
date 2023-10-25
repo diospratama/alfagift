@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.alfagift'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.alfagift"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -21,6 +21,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'baseUrl', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'apiKeyAuth', '"1e38e7ff91ff4aee2e8d47df8fc89cbe"'
+            buildConfigField 'String', 'tokenKeyAuth', '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZTM4ZTdmZjkxZmY0YWVlMmU4ZDQ3ZGY4ZmM4OWNiZSIsInN1YiI6IjY1MzkyMWU2YzUwYWQyMDEyZGY1NWU2ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mvPLmchyMyHvTmDB1P48cy-QQQ7TEmczvdB_J51dzcI"'
+        }
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'baseUrl', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'apiKeyAuth', '"1e38e7ff91ff4aee2e8d47df8fc89cbe"'
+            buildConfigField 'String', 'tokenKeyAuth', '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZTM4ZTdmZjkxZmY0YWVlMmU4ZDQ3ZGY4ZmM4OWNiZSIsInN1YiI6IjY1MzkyMWU2YzUwYWQyMDEyZGY1NWU2ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mvPLmchyMyHvTmDB1P48cy-QQQ7TEmczvdB_J51dzcI"'
         }
     }
     compileOptions {
@@ -32,6 +42,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
@@ -46,4 +57,13 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.12.10'
+
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScreenGeneratorConfiguration">
+    <option name="settings">
+      <Settings>
+        <option name="categories">
+          <list>
+            <Category>
+              <option name="id" value="1" />
+              <option name="name" value="MVVM" />
+            </Category>
+          </list>
+        </option>
+        <option name="screenElements">
+          <list>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Activity" />
+              <option name="relatedAndroidComponent" value="Activity" />
+              <option name="template" value="package %packageName%&#10;&#10;import android.os.Bundle&#10;import androidx.appcompat.app.AppCompatActivity&#10;import com.example.alfagift.databinding.%screenElement%%screenName%Binding        &#10;&#10;class %screenName%%screenElement%  : AppCompatActivity(),%screenName%Interface.View {&#10;&#10;    private var viewModel = %screenName%ViewModel(this)&#10;    private val binding: %screenElement%%screenName%Binding by lazy {&#10;        %screenElement%%screenName%Binding.inflate(layoutInflater)&#10;    }&#10;    &#10;    override fun onResume() {&#10;        super.onResume()&#10;        viewModel.onResume()&#10;    }&#10;&#10;    override fun onCreate(savedInstanceState: Bundle?) {&#10;        super.onCreate(savedInstanceState)&#10;        setContentView(binding.root)&#10;        viewModel.onCreate(this)&#10;    }&#10;&#10;    override fun onDestroy() {&#10;        super.onDestroy()&#10;        viewModel.onDestroy()&#10;    }&#10;    &#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="ViewModel" />
+              <option name="relatedAndroidComponent" value="Activity" />
+              <option name="template" value="package %packageName%&#10;&#10;import androidx.appcompat.app.AppCompatActivity&#10;&#10;class %screenName%%screenElement%(&#10;private var view: %screenName%Interface.View? = null&#10;): %screenName%Interface.ViewModel{&#10;   &#10;&#10;    override fun onResume() {}&#10;&#10;    override fun onCreate(activity: AppCompatActivity) {&#10;        view = activity as %screenName%Activity&#10;       &#10;    }&#10;&#10;    override fun onDestroy() {&#10;        view = null&#10;    }&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Interface" />
+              <option name="relatedAndroidComponent" value="Activity" />
+              <option name="template" value="package %packageName%&#10;&#10;import androidx.appcompat.app.AppCompatActivity&#10;&#10;interface %screenName%%screenElement% {&#10;    &#10;    interface View{&#10;        &#10;    }&#10;&#10;    interface ViewModel{&#10;        fun onResume()&#10;        fun onCreate(activity: AppCompatActivity)&#10;        fun onDestroy()&#10;    }&#10;    &#10;}&#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%componentLowerCase%_%screenNameSnakeCase%" />
+              <option name="fileType" value="Layout XML" />
+              <option name="name" value="LayoutActivity" />
+              <option name="relatedAndroidComponent" value="Activity" />
+              <option name="template" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;androidx.constraintlayout.widget.ConstraintLayout&#10;    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&#10;    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&#10;    android:layout_width=&quot;match_parent&quot;&#10;    android:layout_height=&quot;match_parent&quot;&gt;&#10;&#10;&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Fragment" />
+              <option name="relatedAndroidComponent" value="Fragment" />
+              <option name="template" value="package %packageName%&#10;&#10;import android.content.Context&#10;import android.os.Bundle&#10;import android.view.LayoutInflater&#10;import android.view.View&#10;import android.view.ViewGroup&#10;import androidx.fragment.app.Fragment&#10;import com.example.alfagift.databinding.%screenElement%%screenName%Binding&#10;&#10;private const val ARG_PARAM1 = &quot;param1&quot;&#10;private const val ARG_PARAM2 = &quot;param2&quot;&#10;&#10;class %screenName%%screenElement%  : Fragment(),%screenName%Interface.View {&#10;&#10;    private var viewModel = %screenName%ViewModel(this)&#10;    private lateinit var binding: %screenElement%%screenName%Binding&#10;    &#10;    private var param1: String? = null&#10;    private var param2: String? = null&#10;&#10;    override fun onCreate(savedInstanceState: Bundle?) {&#10;        super.onCreate(savedInstanceState)&#10;        arguments?.let {&#10;            param1 = it.getString(ARG_PARAM1)&#10;            param2 = it.getString(ARG_PARAM2)&#10;        }&#10;    }&#10;&#10;    override fun onCreateView(&#10;        inflater: LayoutInflater, container: ViewGroup?,&#10;        savedInstanceState: Bundle?&#10;    ): View {&#10;        binding = %screenElement%%screenName%Binding.inflate(inflater, container, false)&#10;        return binding.root&#10;    }&#10;&#10;    override fun onResume() {&#10;        super.onResume()&#10;        viewModel.onResume()&#10;    }&#10;&#10;    override fun onDestroy() {&#10;        super.onDestroy()&#10;        viewModel.onDestroy()&#10;    }&#10;&#10;    override fun onAttach(context: Context) {&#10;        super.onAttach(context)&#10;        viewModel.onAttach(context)&#10;    }&#10;&#10;    override fun onDetach() {&#10;        super.onDetach()&#10;        viewModel.onDetach()&#10;    }&#10;&#10;    companion object {&#10;        fun newInstance(param1: String, param2: String) =&#10;        %screenName%%screenElement%().apply {&#10;                arguments = Bundle().apply {&#10;                    putString(ARG_PARAM1, param1)&#10;                    putString(ARG_PARAM2, param2)&#10;                }&#10;            }&#10;    }&#10;&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="ViewModel" />
+              <option name="relatedAndroidComponent" value="Fragment" />
+              <option name="template" value="package %packageName%&#10;&#10;import android.content.Context&#10;import androidx.fragment.app.Fragment&#10;&#10;class %screenName%%screenElement%(&#10;private var view: %screenName%Interface.View? = null&#10;): %screenName%Interface.ViewModel{&#10;&#10;    override fun onResume() {}&#10;    &#10;    override fun onAttach(context: Context) {}&#10;&#10;    override fun onCreate(fragment: Fragment) {&#10;        view = fragment as %screenName%Fragment&#10;    }&#10;&#10;    override fun onCreateView() {}&#10;&#10;    override fun onDestroy() {&#10;        view = null&#10;    }&#10;&#10;    override fun onDetach() {}&#10;    &#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Interface" />
+              <option name="relatedAndroidComponent" value="Fragment" />
+              <option name="template" value="package %packageName%&#10;&#10;import android.content.Context&#10;import androidx.fragment.app.Fragment&#10;&#10;interface %screenName%%screenElement% {&#10;&#10;    interface View{&#10;&#10;    }&#10;&#10;    interface ViewModel{&#10;        fun onResume()&#10;        fun onAttach(context: Context)&#10;        fun onCreate(fragment: Fragment)&#10;        fun onCreateView()&#10;        fun onDestroy()&#10;        fun onDetach()&#10;    }&#10;    &#10;&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="categoryId" value="1" />
+              <option name="fileNameTemplate" value="%componentLowerCase%_%screenNameSnakeCase%" />
+              <option name="fileType" value="Layout XML" />
+              <option name="name" value="LayoutFragment" />
+              <option name="relatedAndroidComponent" value="Fragment" />
+              <option name="template" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&#10;    android:layout_width=&quot;match_parent&quot;&#10;    android:layout_height=&quot;match_parent&quot;&gt;&#10;    &#10;    &lt;TextView&#10;        android:layout_width=&quot;match_parent&quot;&#10;        android:layout_height=&quot;match_parent&quot;&#10;        android:text=&quot;@string/hello_blank_fragment&quot; /&gt;&#10;&#10;&lt;/FrameLayout&gt;" />
+            </ScreenElement>
+          </list>
+        </option>
+      </Settings>
+    </option>
+  </component>
+</project>
