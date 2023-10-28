@@ -6,5 +6,7 @@
     <color name="grey">#A7A9AC</color>
     <color name="softGrey">#DBDCDE</color>
     <color name="darkGrey">#7F7F7F</color>
+    <color name="transprant"></color>
+
 
 </resources>

@@ -12,6 +12,7 @@ interface SplashInterface {
         fun onResume()
         fun onCreate(activity: AppCompatActivity)
         fun onDestroy()
+        fun goToHome(activity: AppCompatActivity)
     }
     
 }
